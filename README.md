@@ -10,7 +10,7 @@ Visit https://ui.shadcn.com/docs to view the documentation.
 
 ## Contributing
 
-Please read the [contributing guide](/CONTRIBUTING.md).
+Please read the [contributing guide](./CONTRIBUTING.md).
 
 ## License
 

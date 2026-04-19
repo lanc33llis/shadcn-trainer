@@ -4,11 +4,13 @@ import * as React from "react"
 import { Button } from "@/examples/base/ui/button"
 import { Skeleton } from "@/examples/base/ui/skeleton"
 
-import { cn } from "@/lib/utils"
+import { cn, getAppUrl } from "@/lib/utils"
 import { useIsMobile } from "@/hooks/use-mobile"
 import { useMounted } from "@/hooks/use-mounted"
 import { Icons } from "@/components/icons"
 import { useDesignSystemSearchParams } from "@/app/(create)/lib/search-params"
+
+const APP_URL = getAppUrl()
 
 export function V0Button({ className }: { className?: string }) {
   const [params] = useDesignSystemSearchParams()
@@ -24,7 +26,7 @@ export function V0Button({ className }: { className?: string }) {
 
     searchParams.set("base", params.base)
 
-    return `${process.env.NEXT_PUBLIC_APP_URL}/init/v0?${searchParams.toString()}`
+    return `${APP_URL}/init/v0?${searchParams.toString()}`
   }, [params.preset, params.base])
 
   const title = React.useMemo(() => {

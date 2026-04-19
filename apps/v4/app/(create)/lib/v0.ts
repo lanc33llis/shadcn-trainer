@@ -14,6 +14,7 @@ import {
   fonts,
   type DesignSystemConfig,
 } from "@/registry/config"
+import { getAppUrl } from "@/lib/utils"
 
 const { Index } = await import("@/registry/bases/__index__")
 
@@ -513,7 +514,7 @@ async function getRegistryItemFile(
   config: z.infer<typeof configSchema>
 ) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_APP_URL}/r/styles/${getStyle(designSystemConfig)}/${name}.json`
+    `${getAppUrl()}/r/styles/${getStyle(designSystemConfig)}/${name}.json`
   )
 
   if (!response.ok) {

@@ -19,6 +19,7 @@
     "examples:build": "bun run ./scripts/build-examples.ts && prettier --log-level silent --write \"examples/**/*.{ts,tsx}\" --cache",
     "registry:capture": "tsx --tsconfig ./tsconfig.scripts.json ./scripts/capture-registry.mts",
     "explore:capture": "tsx --tsconfig ./tsconfig.scripts.json ./scripts/capture-explore.mts",
+    "theme-training:capture": "pnpm --filter=shadcn build && tsx --tsconfig ./tsconfig.scripts.json ./scripts/capture-theme-training.ts",
     "validate:registries": "tsx --tsconfig ./tsconfig.scripts.json ./scripts/validate-registries.mts",
     "test:apps": "bun run ./scripts/build-test-app.mts",
     "postinstall": "fumadocs-mdx"

@@ -6,6 +6,7 @@ import { Share03Icon, Tick02Icon } from "@hugeicons/core-free-icons"
 import { HugeiconsIcon } from "@hugeicons/react"
 
 import { copyToClipboardWithMeta } from "@/components/copy-button"
+import { getAppUrl } from "@/lib/utils"
 import { usePresetCode } from "@/app/(create)/hooks/use-design-system"
 import { useDesignSystemSearchParams } from "@/app/(create)/lib/search-params"
 
@@ -15,7 +16,7 @@ export function ShareButton() {
   const [hasCopied, setHasCopied] = React.useState(false)
 
   const shareUrl = React.useMemo(() => {
-    const origin = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
+    const origin = getAppUrl()
     return `${origin}/create?preset=${presetCode}&item=${params.item}`
   }, [presetCode, params.item])
 

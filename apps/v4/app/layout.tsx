@@ -3,7 +3,7 @@ import { NuqsAdapter } from "nuqs/adapters/next/app"
 
 import { META_THEME_COLORS, siteConfig } from "@/lib/config"
 import { fontVariables } from "@/lib/fonts"
-import { cn } from "@/lib/utils"
+import { absoluteUrl, cn, getAppUrl } from "@/lib/utils"
 import { LayoutProvider } from "@/hooks/use-layout"
 import { ActiveThemeProvider } from "@/components/active-theme"
 import { Analytics } from "@/components/analytics"
@@ -15,12 +15,15 @@ import { TooltipProvider as RadixTooltipProvider } from "@/registry/bases/radix/
 
 import "@/styles/globals.css"
 
+const appUrl = getAppUrl()
+const openGraphImageUrl = absoluteUrl("/opengraph-image.png")
+
 export const metadata: Metadata = {
   title: {
     default: siteConfig.name,
     template: `%s - ${siteConfig.name}`,
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL!),
+  metadataBase: new URL(appUrl),
   description: siteConfig.description,
   keywords: ["Next.js", "React", "Tailwind CSS", "Components", "shadcn"],
   authors: [
@@ -33,13 +36,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: process.env.NEXT_PUBLIC_APP_URL!,
+    url: appUrl,
     title: siteConfig.name,
     description: siteConfig.description,
     siteName: siteConfig.name,
     images: [
       {
-        url: `${process.env.NEXT_PUBLIC_APP_URL}/opengraph-image.png`,
+        url: openGraphImageUrl,
         width: 1200,
         height: 630,
         alt: siteConfig.name,
@@ -50,7 +53,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [`${process.env.NEXT_PUBLIC_APP_URL}/opengraph-image.png`],
+    images: [openGraphImageUrl],
     creator: "@shadcn",
   },
   icons: {
@@ -58,10 +61,10 @@ export const metadata: Metadata = {
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
-  manifest: `${siteConfig.url}/site.webmanifest`,
+  manifest: absoluteUrl("/site.webmanifest"),
   alternates: {
     types: {
-      "application/rss+xml": `${siteConfig.url}/rss.xml`,
+      "application/rss+xml": absoluteUrl("/rss.xml"),
     },
   },
 }
